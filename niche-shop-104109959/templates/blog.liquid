@@ -1,0 +1,52 @@
+<div class="boxed margin--top margin--bottom">
+{% paginate blog.articles by 5 %}
+
+<h1 class="page-title">
+    <span>
+        {% if current_tags %}
+          {{ blog.title | link_to: blog.url }} &mdash; {{ current_tags.first }}
+        {% else %}
+          {{ blog.title }}
+        {% endif %}
+    </span>
+</h1>
+
+<div class="margin--top">
+    <div class="container container--padding flush--left flush--right">
+
+        {% for article in blog.articles %}
+            <div class="row margin--bottom news-item">
+                {% if article.image %}
+                    <div class="col-md-2 col-sm-3 col-xs-12 news-item__image margin--bottom">
+
+                            {% assign image_alt = article.title | escape %}
+                            {{ article | img_url: '1024x1024' | img_tag: image_alt, | link_to: article.url }}
+                    </div>
+                {% endif %}
+
+                <div class="col-md-10 col-sm-9 col-xs-12">
+                    <h2 class="margin--bottom news-item__title"><a href="{{ article.url }}">{{ article.title }}</a></h2>
+                    {% if article.excerpt.size > 0 %}
+                      <p class="news-item__copy">{{ article.excerpt }}</p>
+                    {% else %}
+                      <p class="news-item__copy">{{ article.content | strip_html | truncatewords: 100 }}</p>
+                    {% endif %}
+                    <a href="{{ article.url }}" class="button button--pill">Read more</a>
+                </div>
+            </div>
+
+        {% endfor %}
+
+        {% if paginate.pages > 1 %}
+          <div class="text-center">
+            {% include 'pagination-custom' %}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+</div>
+
+{% endpaginate %}
+</div>

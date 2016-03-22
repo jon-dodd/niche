@@ -1,0 +1,84 @@
+//==========================================================================
+//   WELCOME
+//==========================================================================
+
+.owl-carousel {
+	width: auto;
+	cursor: hand;
+	background: $colour-black;
+}
+
+	.owl-dots {
+		position: absolute;
+		top: $spacing/2;
+		right: $spacing/2;
+		z-index: $zindex-high;
+
+		@media all and (min-width: $lap-start) {
+			top: auto;
+			bottom: $spacing;
+			right: $spacing;
+		}
+
+		.owl-dot {
+			width: 15px;
+			height: 15px;
+			border-radius: 50%;
+			background: $colour-black;
+			display: inline-block;
+			margin: 0 $spacing/6;
+			@include prefix(transition, background $animation-time $easing);
+
+			@media all and (min-width: $lap-start) {
+				width: 20px;
+				height: 20px;
+				margin: 0 $spacing/4;
+			}
+
+			&.active {
+				background: $colour-pink;
+			}
+		}
+	}
+
+.welcome {
+	position: relative;
+
+	a {
+		display: block;
+	}
+
+}
+
+	.welcome__title {
+		width: 100%;
+		display: inline-block;
+		padding: $spacing/2 $spacing;
+		background: $colour-pink;
+		color: $colour-white;
+		margin: 0;
+		text-align: center;
+		font-size: $size-h3;
+		z-index: $zindex-high;
+		font-family: $font-special;
+		@include prefix(transition, opacity $animation-time $easing);
+
+		@media all and (min-width: $lap-start) {
+			position: absolute;
+			bottom: $spacing;
+			max-width: 65%;
+			opacity: .9;
+			font-size: $size-h1;
+			text-align: left;
+			width: auto;
+
+			a:hover & {
+				opacity: 1;
+			}
+		}
+	}
+
+	.welcome__hero {
+		width: 100%;
+		display: block;
+	}

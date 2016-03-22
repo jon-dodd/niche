@@ -1,0 +1,23 @@
+//==========================================================================
+//   PANELS
+//==========================================================================
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	background: $colour-cream;
+}
+
+.container {
+	max-width: $page-width;
+	margin: 0 auto;
+	padding: 0 $spacing/2;
+}
+
+.boxed {
+	padding: $spacing;
+	background: $colour-white;
+	border-top: 6px solid $colour-teal;
+}

@@ -1,0 +1,35 @@
+//==========================================================================
+//   NEWS
+//==========================================================================
+
+.news-item {
+    &__image {
+        @include prefix(transform, scale(1));
+        @include prefix(transition, transform $animation-time $easing);
+
+        .news-item:hover & {
+            @include prefix(transform, scale(1.05));
+        }
+    }
+
+    &__title {
+        margin-bottom: $spacing/1.5 !important;
+        position: relative;
+        top: -4px;
+
+        a {
+            text-decoration: none;
+            border-bottom: 2px solid $colour-black;
+            color: $colour-black;
+            @include prefix(transition, border $animation-time $easing);
+
+            &:hover {
+                border-bottom-color: $colour-teal;
+            }
+        }
+    }
+
+    &__copy {
+        margin-bottom: $spacing/1.5;
+    }
+}

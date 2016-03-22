@@ -1,0 +1,22 @@
+//==========================================================================
+//   HEADER
+//==========================================================================
+
+	header {
+
+	}
+
+		.header__logo {
+			display: block;
+			margin: 0 auto $spacing auto;
+			opacity: 1;
+			@include prefix(transition, opacity $animation-time $easing);
+
+			img {
+				width: 100%;
+			}
+
+			&:hover {
+    			opacity: .9;
+			}
+		}

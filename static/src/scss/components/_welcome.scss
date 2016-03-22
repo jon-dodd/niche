@@ -1,0 +1,66 @@
+//==========================================================================
+//   WELCOME
+//==========================================================================
+
+.owl-carousel {
+	margin-left: -$spacing - 2px;
+	margin-right: -$spacing - 2px;
+	width: auto;
+	cursor: hand;
+	background: $colour-black;
+}
+
+	.owl-dots {
+		position: absolute;
+		bottom: $spacing;
+		right: $spacing;
+		z-index: $zindex-high;
+
+		.owl-dot {
+			width: 20px;
+			height: 20px;
+			border-radius: 50%;
+			background: $colour-black;
+			display: inline-block;
+			margin: 0 $spacing/4;
+			@include prefix(transition, background $animation-time $easing);
+
+			&.active {
+				background: $colour-gold;
+			}
+		}
+	}
+
+.welcome {
+	position: relative;
+
+	a {
+		display: block;
+	}
+
+}
+
+	.welcome__title {
+		position: absolute;
+		bottom: $spacing;
+		max-width: 65%;
+		display: inline-block;
+		padding: $spacing/2 $spacing;
+		background: $colour-gold;
+		color: $colour-white;
+		margin: 0;
+		opacity: .9;
+		@extend .h1;
+		z-index: $zindex-high;
+		font-family: $font-standout;
+		@include prefix(transition, opacity $animation-time $easing);
+
+		a:hover & {
+			opacity: 1;
+		}
+	}
+
+	.welcome__hero {
+		width: 100%;
+		display: block;
+	}

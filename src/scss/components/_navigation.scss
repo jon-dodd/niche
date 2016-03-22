@@ -1,0 +1,238 @@
+//==========================================================================
+//   NAVIGATION
+//==========================================================================
+
+// Vars
+
+$mobile-nav: $lap-start;
+$nav-colour: $colour-teal;
+
+.nav {
+	background: $nav-colour;
+	padding: $spacing/3 0;
+	position: relative;
+
+	a {
+		color: $colour-white;
+		text-decoration: none;
+		@include prefix(transition, background $animation-time $easing);
+	}
+
+	.container {
+
+		> ul {
+    		width: 100%;
+    		border-top: 2px solid darken($nav-colour,3%);
+    	}
+	}
+}
+
+	.nav__parent {
+		position: relative;
+		@media all and (min-width: $mobile-nav) {
+			margin: 0 15px 0 0 !important;
+		}
+
+		@media all and (min-width: $mobile-nav) {
+			&:before {
+				width: 20px;
+				height: 25px;
+				display: block;
+				background: url('rabbit--dark.png') no-repeat;
+				background-size: 100%;
+				position: absolute;
+				left: 100%;
+				top: 12px;
+				content: '';
+				z-index: $zindex-super;
+			}
+
+			&:last-child {
+				margin: 0 !important;
+
+				&:before {
+					display: none;
+				}
+			}
+		}
+
+		>a {
+			display: block;
+			padding: $spacing/2;
+			font-family: $font-special;
+			font-size: $size-base;
+
+			&:hover {
+				background: darken($nav-colour,3%);
+			}
+		}
+	}
+
+		.nav__dropdown {
+			width: 300px;
+			opacity: 0;
+			visibility: none;
+			position: absolute;
+			left: 0;
+			height: 0;
+			display: block;
+			overflow: hidden;
+			top: 100%;
+			z-index: $zindex-super;
+			background: darken($nav-colour,3%);
+			text-align: left;
+			font-size: $size-smaller;
+			@include prefix(transform, translateY(-10px));
+
+
+			.nav__parent:hover & {
+				opacity: 1;
+				visibility: visible;
+				overflow: visible;
+				height: auto;
+				@include prefix(transform, translateY(0px));
+				@include prefix(transition, all $animation-time $easing);
+			}
+		}
+
+			.nav__child {
+				display: block;
+				width: 100%;
+
+				>a {
+					padding: $spacing/2;
+					display: block;
+
+					&:hover {
+						background: $colour-pink;
+					}
+				}
+			}
+
+
+
+// Mobile menu
+
+.nav__toggle {
+	display: block;
+	padding: 11px 0 11px $spacing;
+	text-align: center;
+	border-top: 2px solid darken($nav-colour,3%);
+	font-family: $font-special;
+	font-size: $size-larger;
+
+	span {
+		display: block;
+		position: absolute;
+		height: 3px;
+		width: 20px;
+		background: $colour-white;
+		opacity: 1;
+		left: 50%;
+		margin-left: -40px;
+		@include prefix(transform, rotate(0deg));
+		@include prefix(transition, all $animation-time ease-in-out);
+
+		&:nth-child(1) {
+			top: 26px;
+		}
+
+		&:nth-child(2),
+		&:nth-child(3) {
+			top: 33px;
+		}
+
+		&:nth-child(4) {
+			top: 40px;
+		}
+	}
+
+	&.nav__toggle--active {
+		span {
+			&:nth-child(1) {
+				opacity: 0;
+			}
+			&:nth-child(2) {
+				@include prefix(transform, rotate(45deg));
+			}
+			&:nth-child(3) {
+				@include prefix(transform, rotate(-45deg));
+			}
+			&:nth-child(4) {
+				opacity: 0;
+			}
+		}
+	}
+
+	@media all and (min-width: $mobile-nav) {
+		display: none;
+	}
+}
+
+.nav__items {
+	display: none;
+
+
+	@media all and (max-width: $mobile-nav) {
+		&.nav__items--show {
+			display: block;
+		}
+
+		.nav__parent {
+			width: 100%;
+			margin: 0;
+		}
+
+		.nav__dropdown {
+			position: relative;
+			width: 100%;
+			text-align: center;
+		}
+	}
+
+	@media all and (min-width: $mobile-nav) {
+		display: block;
+	}
+}
+
+// Breadcrumbs
+
+.breadcrumb {
+	display: none;
+
+	@media all and (min-width: $palm-start) {
+		display: block;
+		padding: $spacing 0;
+		font-size: $size-smaller;
+		color: ligthen($colour-black,5%);
+
+		a {
+			text-decoration: none;
+			margin-right: $spacing/2;
+
+			&:before {
+				content: "N";
+				font-family: "niche" !important;
+				position: relative;
+				top: 3px;
+				margin-right: $spacing/3;
+				font-style: normal !important;
+				font-weight: normal !important;
+				font-variant: normal !important;
+				text-transform: none !important;
+				speak: none;
+				line-height: 1;
+				-webkit-font-smoothing: antialiased;
+				-moz-osx-font-smoothing: grayscale;
+				text-decoration: none;
+				color: $colour-black;
+			}
+
+			&:first-child {
+				&:before {
+					content: "H";
+				}
+			}
+		}
+	}
+}

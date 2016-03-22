@@ -1,0 +1,81 @@
+//==========================================================================
+//   BUTTONS
+//==========================================================================
+
+	//
+	// Button styles go in here. Remember to comment all relevant information.
+	//
+
+	// Base button style
+	.button,
+	button,
+	input[type="button"],
+	input[type="submit"] {
+		padding: $spacing/1.5; 
+		display: inline-block; 
+		text-decoration: none; 
+		background: $colour-primary;
+		color: $colour-white; 
+		transition: background $animation-time $easing; 
+		border-radius: 4px; 
+		
+		&:hover,
+		&:focus {
+			background: darken($colour-primary,10%);
+			color: $colour-white; 
+		}
+		
+		// Heirarchy
+	
+		&.button--secondary {
+			background: $colour-secondary;
+			
+			&:hover,
+			&:focus {
+				background: darken($colour-secondary,10%);
+			}
+		}
+		
+		&.button--special {
+			background: $colour-special;
+			
+			&:hover,
+			&:focus {
+				background: darken($colour-special,10%);
+			}
+		}
+		
+		
+		// Additional mods
+		&.button--muted {
+			background: $colour-grey; 
+			color: lighten($colour-grey, 20%); 
+			cursor: default; 
+			
+			&:hover,
+			&:focus {
+				background: $colour-grey; 
+			}
+		}
+		
+		
+		// Sizing
+		&.button--larger {
+			padding: $spacing*2;
+			font-size: $size-larger; 
+		}
+		
+		&.button--pill {
+			padding: $spacing/2; 
+			font-size: $size-smaller; 
+		}
+		
+		// Changing the state
+		&.button--active {
+			background: darken($colour-primary,10%);
+		}
+		
+		&.button--block {
+			display: block; 
+		}
+	}

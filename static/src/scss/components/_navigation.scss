@@ -1,0 +1,126 @@
+//==========================================================================
+//   NAVIGATION
+//==========================================================================
+
+
+$nav-colour: $colour-teal;
+
+.nav {
+	background: $nav-colour;
+	margin-left: -($spacing/2)-2;
+	margin-right: -($spacing/2)-2;
+	padding: $spacing/3 0;
+	position: relative;
+
+	a {
+		color: $colour-white;
+		text-decoration: none;
+		@include prefix(transition, background $animation-time $easing);
+	}
+
+	.container {
+
+		> ul {
+    		width: 100%;
+    		border-top: 2px solid darken($nav-colour,3%);
+    	}
+	}
+}
+
+	.nav__parent {
+		position: relative;
+		margin: 0 25px 0 0 !important;
+
+		&:before {
+			width: 25px;
+			height: 30px;
+			display: block;
+			background: url('../img/rabbit--dark.png') no-repeat;
+			background-size: 100%;
+			position: absolute;
+			left: 100%;
+			top: 12px;
+			content: '';
+		}
+
+		&:last-child {
+			margin: 0 !important;
+
+			&:before {
+				display: none;
+			}
+		}
+
+		>a {
+			display: block;
+			padding: $spacing/2;
+			font-family: $font-special;
+			font-size: $size-larger;
+
+			&:hover {
+				background: darken($nav-colour,3%);
+			}
+		}
+	}
+
+		.nav__dropdown {
+			width: 300px;
+			opacity: 0;
+			visibility: none;
+			position: absolute;
+			left: 0;
+			height: 0;
+			display: block;
+			overflow: hidden;
+			top: 100%;
+			z-index: $zindex-super;
+			background: darken($nav-colour,3%);
+			text-align: left;
+			@include prefix(transform, translateY(-10px));
+
+
+			.nav__parent:hover & {
+				opacity: 1;
+				visibility: visible;
+				overflow: visible;
+				height: auto;
+				@include prefix(transform, translateY(0px));
+				@include prefix(transition, all $animation-time $easing);
+			}
+		}
+
+			.nav__child {
+				display: block;
+				width: 100%;
+
+				>a {
+					padding: $spacing/2;
+					display: block;
+
+					&:hover {
+						background: $colour-pink;
+					}
+				}
+			}
+
+
+// Mobile toggle
+
+.mobile-toggle {
+	display: none;
+
+	@media all and (max-width: $desk-start) {
+		display: block;
+		text-align: center;
+		position: relative;
+		font-family: $font-special;
+		font-size: $size-largest;
+		padding: $spacing/2;
+	}
+}
+
+.nav__items {
+	@media all and (max-width: $desk-start) {
+		display: none;
+	}
+}

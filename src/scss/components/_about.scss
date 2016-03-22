@@ -1,0 +1,22 @@
+//==========================================================================
+//   ABOUT
+//==========================================================================
+
+.about {
+    padding: $spacing;
+    margin: 0;
+    
+    @media all and (min-width: $lap-start) {
+        margin: $spacing 0;
+    }
+
+    p {
+        margin: 0;
+        @extend .paragraph--lede;
+        text-align: center;
+
+        + p {
+            margin-top: $spacing;
+        }
+    }
+}

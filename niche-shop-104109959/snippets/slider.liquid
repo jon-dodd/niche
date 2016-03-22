@@ -1,0 +1,37 @@
+<!-- <div class="callouts">
+    <div class="row">
+        {% for i in (1..6) %}
+          {% capture slide %}slide_{{ i }}{% endcapture %}
+          {% capture slide_link %}slide_{{ i }}_link{% endcapture %}
+          {% capture slide_img %}slide_{{ i }}.jpg{% endcapture %}
+          {% capture slide_alt %}slide_{{ i }}_alt{% endcapture %}
+          {% if settings[slide] %}
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <a class="callouts__block margin--bottom" href="{{ settings[slide_link] }}">
+                    {{ slide_img | asset_url | img_tag: settings[slide_alt] }}
+                </a>
+            </div>
+          {% endif %}
+        {% endfor %}
+    </div>
+</div> -->
+
+<div class="welcome">
+
+    <div class="owl-carousel">
+        {% for i in (1..6) %}
+          {% capture slide %}slide_{{ i }}{% endcapture %}
+          {% capture slide_link %}slide_{{ i }}_link{% endcapture %}
+          {% capture slide_img %}slide_{{ i }}.jpg{% endcapture %}
+          {% capture slide_alt %}slide_{{ i }}_alt{% endcapture %}
+          {% if settings[slide] %}
+                <div>
+                    <a href="{{ settings[slide_link] }}">
+                        {{ slide_img | asset_url | img_tag: settings[slide_alt] }}
+                        <h1 class="welcome__title">{{ settings[slide_alt] }}</h1>
+                    </a>
+                </div>
+            {% endif %}
+          {% endfor %}
+    </div>
+</div>

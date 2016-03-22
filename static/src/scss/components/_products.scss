@@ -1,0 +1,43 @@
+//==========================================================================
+//   PRODUCTS
+//==========================================================================
+
+.products__title {
+    color: $colour-teal;
+    border-bottom: 2px solid $colour-grey;
+    display: table;
+    margin: 0 auto;
+    margin-bottom: $spacing;
+    padding-bottom: $spacing/2;
+}
+
+    .product {
+        display: block;
+        text-decoration: none;
+        color: $colour-black;
+        margin-bottom: $spacing;
+        text-align: center;
+    }
+
+        .product__thumb {
+			border-top: 3px solid transparent;
+            @include prefix(transition, all $animation-time $easing);
+
+            .product:hover & {
+				border-top-color: $colour-pink;
+            }
+        }
+
+        .product__title {
+            margin-bottom: $spacing/4;
+            @include prefix(transition, color $animation-time $easing);
+
+            .product:hover & {
+                color: $colour-pink;
+            }
+        }
+
+        .product__price {
+	        color: $colour-pink;
+	        font-weight: $weight-bold;
+        }

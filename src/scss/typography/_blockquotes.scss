@@ -1,0 +1,41 @@
+//==========================================================================
+//   BLOCKQUOTES
+//==========================================================================
+
+	//
+	// This is where we'll style blockquotes. Remember to comment all relevant information.
+	//
+
+	.page__blockquote {
+		padding: $spacing; 
+		font-size: $size-larger; 
+		line-height: $size-h2; 
+		overflow: auto; 
+		margin: 0 0 $spacing 0; 
+		display: block; 
+	}
+	
+		.page__blockquote-quote {
+			display: block; 
+		}
+		
+		.page__blockquote-cite {
+			font-style: normal; 
+			display: block; 
+		}
+	
+	@media all and (min-width: $lap-start) {
+	
+		.page__blockquote--left {
+			float: left; 
+			margin-right: $spacing; 
+			width: 45%; 
+		}
+			
+		.page__blockquote--right {
+			float: right; 
+			margin-left: $spacing; 
+			width: 45%; 
+		}
+	
+	}

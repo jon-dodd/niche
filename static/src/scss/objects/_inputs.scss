@@ -1,0 +1,86 @@
+//==========================================================================
+//   INPUTS
+//==========================================================================
+
+	label,
+	.form__label {
+		display: block;
+		width: 100%; 	
+		line-height: 1; 
+		margin-bottom: $spacing/2; 
+		line-height: $line-height-base; 
+		cursor: pointer; 
+		
+		+ label {
+			margin: 0; 
+			padding: $spacing/2 0; 
+		}
+	}
+	
+		.form__label--full {
+			width: 100% !important; 
+			text-align: left !important; 
+		}
+
+	input[type="text"],
+	input[type="email"],
+	input[type="password"],
+	input[type="tel"],
+	input[type="number"],
+	input[type="url"],
+	input[type="search"],
+	textarea {
+		padding: $spacing/1.5; 
+		border: none;
+		width: 100%; 
+		border-radius: 4px; 
+		
+		&:focus {
+			outline: none; 
+			background: $colour-white; 
+			transition: all $animation-time $easing; 
+		}
+		
+		@media all and (min-width: $palm-start) {
+			.form__question--large-input & {
+				width: 75% !important; 
+			}
+		}
+	}
+
+	input[type="file"] {
+		padding: $spacing 0; 
+	}
+
+	input[type="checkbox"],
+	input[type="radio"] {
+		margin: 0 $spacing/3 0 0; 
+	}
+
+	textarea {
+		height: 200px; 
+	}
+
+	select {
+		width: 100%; 
+	}
+
+	input[type="button"],
+	input[type="submit"] {
+		border: 0px; 
+	}
+	
+	
+// Hides number spinners
+	
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0; 
+}
+	
+// Mods 
+
+.form__input--short-number {
+	max-width: 100px; 
+}

@@ -1,0 +1,5 @@
+{% if settings.home_page_content != empty %}
+  <div class="about">
+    {{ pages[settings.home_page_content].content }}
+  </div>
+{% endif %}
