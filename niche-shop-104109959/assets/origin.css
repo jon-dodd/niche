@@ -651,10 +651,24 @@ h6,
   background: #272727;
   margin-bottom: 30px;
   overflow: hidden;
+  height: 250px;
+  background-size: cover;
+  background-position: center;
+}
+.page-title-hero:before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
 }
 @media all and (max-width: 480px) {
   .page-title-hero {
-    margin-top: 15px;
+    height: 180px;
   }
 }
 .page-title-hero img {
@@ -673,6 +687,7 @@ h6,
   top: 50%;
   width: 90%;
   left: 5%;
+  z-index: 2;
   -webkit-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
   -moz-transform: translateY(-50%);
@@ -3084,7 +3099,7 @@ fieldset + fieldset {
   }
   .form--inline label,
   .form--inline .label {
-    width: 35%;
+    width: 25%;
     float: left;
     text-align: right;
     margin: 0;
@@ -3093,7 +3108,7 @@ fieldset + fieldset {
   .form--inline label + label,
   .form--inline .label + label {
     float: right;
-    width: 65%;
+    width: 50%;
     padding: 15px 0;
     text-align: left;
   }
@@ -3106,7 +3121,7 @@ fieldset + fieldset {
   .form--inline input[type="search"],
   .form--inline textarea,
   .form--inline select {
-    width: 65%;
+    width: 50%;
     float: right;
   }
   .form--inline input[type="text"] + button,
@@ -3608,7 +3623,7 @@ body {
 .owl-carousel {
   width: auto;
   cursor: hand;
-  background: #272727;
+  background: #cb9eb5;
 }
 
 .owl-dots {

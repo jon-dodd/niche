@@ -12,7 +12,7 @@
         "content": "This theme is fully supported by Shopify. For support and customizations, contact [theme-support@shopify.com](mailto:theme-support@shopify.com?subject=[Launchpad]+Theme+Support)."
       }
     ]
-},
+  },
   {
     "name": "Header",
     "settings": [
@@ -442,8 +442,7 @@
         "label": "Show heading"
       }
     ]
-},
-
+  },
   {
     "name": "Social media",
     "settings": [
@@ -469,14 +468,12 @@
         "label": "Pinterest",
         "info": "https:\/\/www.pinterest.com\/shopify"
       },
-
       {
         "type": "text",
         "id": "social_instagram_link",
         "label": "Instagram",
         "info": "https:\/\/instagram.com\/shopify"
       }
-
     ]
   }
 ]

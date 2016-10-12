@@ -10,8 +10,8 @@
 <div class="boxed margin--bottom">
     <div class="margin--bottom">
         {% if collection.image %}
-            <div class="page-title-hero">
-                <img src="{{ collection | img_url: 'master' }}"  alt="{{ collection.title | escape }}">
+            <div class="page-title-hero" style="background-image: url('{{ collection | img_url: 'master' }}')">
+                <!-- <img src="{{ collection | img_url: 'master' }}"  alt="{{ collection.title | escape }}"> -->
                 <div class="page-title-hero__copy">
                     <h1 class="page-title"><span>{{ collection.title }}</span></h1>
                     {% if collection.description != blank %}

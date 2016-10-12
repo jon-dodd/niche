@@ -1,0 +1,73 @@
+<div class="container">
+    {% include 'breadcrumb' %}
+    <h1 class="page-title"><span>{{ page.title }}</span></h1>
+    <div class="padding--bottom">
+        {{ page.content }}
+
+        {% if settings.fabric-collection-1 %}
+            <h3 class="align--centre">{{ settings.fabric-collection-1_title }}</h3>
+
+            <div class="row margin--bottom">
+
+                {% for i in (1..6) %}
+                    {% capture fabric %}fabric-{{ i }}{% endcapture %}
+                    {% capture fabric_link %}fabric-{{ i }}_link{% endcapture %}
+                    {% capture fabric_img %}fabric-{{ i }}.jpg{% endcapture %}
+                    {% capture fabric_title %}fabric-{{ i }}_title{% endcapture %}
+                    {% if settings[fabric] %}
+                        <div class="col-md-2 col-sm-4 col-xs-6">
+                            <a href="{{ settings[fabric_link] }}" class="product">
+                                <img class="product__thumb" alt="{{ settings[fabric_title] }}" src="{{ fabric_img | asset_url }}">
+                                <h3 class="product__title">{{ settings[fabric_title] }}</h3>
+                            </a>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        {% if settings.fabric-collection-2 %}
+            <h3 class="align--centre">{{ settings.fabric-collection-2_title }}</h3>
+
+            <div class="row margin--bottom">
+
+                {% for i in (7..12) %}
+                    {% capture fabric %}fabric-{{ i }}{% endcapture %}
+                    {% capture fabric_link %}fabric-{{ i }}_link{% endcapture %}
+                    {% capture fabric_img %}fabric-{{ i }}.jpg{% endcapture %}
+                    {% capture fabric_title %}fabric-{{ i }}_title{% endcapture %}
+                    {% if settings[fabric] %}
+                        <div class="col-md-2 col-sm-4 col-xs-6">
+                            <a href="{{ settings[fabric_link] }}" class="product">
+                                <img class="product__thumb" alt="{{ settings[fabric_title] }}" src="{{ fabric_img | asset_url }}">
+                                <h3 class="product__title">{{ settings[fabric_title] }}</h3>
+                            </a>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        {% if settings.fabric-collection-3 %}
+            <h3 class="align--centre">{{ settings.fabric-collection-3_title }}</h3>
+
+            <div class="row margin--bottom">
+
+                {% for i in (13..18) %}
+                    {% capture fabric %}fabric-{{ i }}{% endcapture %}
+                    {% capture fabric_link %}fabric-{{ i }}_link{% endcapture %}
+                    {% capture fabric_img %}fabric-{{ i }}.jpg{% endcapture %}
+                    {% capture fabric_title %}fabric-{{ i }}_title{% endcapture %}
+                    {% if settings[fabric] %}
+                        <div class="col-md-2 col-sm-4 col-xs-6">
+                            <a href="{{ settings[fabric_link] }}" class="product">
+                                <img class="product__thumb" alt="{{ settings[fabric_title] }}" src="{{ fabric_img | asset_url }}">
+                                <h3 class="product__title">{{ settings[fabric_title] }}</h3>
+                            </a>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+</div>
