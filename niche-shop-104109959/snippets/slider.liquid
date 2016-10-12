@@ -26,8 +26,8 @@
           {% capture slide_alt %}slide_{{ i }}_alt{% endcapture %}
           {% if settings[slide] %}
                 <div>
-                    <a href="{{ settings[slide_link] }}">
-                        {{ slide_img | asset_url | img_tag: settings[slide_alt] }}
+                    <a class="welcome__slide" style="background-image: url({{ slide_img | asset_img_url: 'master' }} );" href="{{ settings[slide_link] }}">
+                        <!-- {{ slide_img | asset_url | img_tag: settings[slide_alt] }} -->
                         <h1 class="welcome__title">{{ settings[slide_alt] }}</h1>
                     </a>
                 </div>

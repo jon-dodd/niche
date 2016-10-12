@@ -34,8 +34,7 @@
   <!-- CSS ================================================== -->
   {{ 'origin.css' | asset_url | stylesheet_tag }}
 
-  <link href='https://fonts.googleapis.com/css?family=Abril+Fatface' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700' rel='stylesheet' type='text/css'>
+<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700|Shadows+Into+Light" rel="stylesheet">
 
   <!-- Header hook for plugins ================================================== -->
   {{ content_for_header }}
@@ -64,13 +63,14 @@
                     <img class="palm" alt="{{ shop.name }}" itemprop="logo" src="{{ 'header--mobile.png' | asset_url }}">
                 </a>
             </header>
-            {% include 'site-nav' %}
-
-            <div class="content">
-                {{ content_for_layout }}
-            </div>
         </div>
+        {% include 'site-nav' %}
     </div>
+
+    <div class="content">
+        {{ content_for_layout }}
+    </div>
+
 
         <footer class="footer">
             <div class="container">
@@ -146,7 +146,7 @@
 
                 </div>
 
-                <p class="align--centre paragraph--small footer__smallprint">All content &copy; {{ shop.name }} {{ 'now' | date: "%Y" }}. All rights reserved. Site by <a href="http://jon.dodd.xyz">Alloneword</a>, powered by <a href="http://www.shopify.com/website">Shopify</a>.</p>
+                <p class="align--centre paragraph--small footer__smallprint">All content &copy; {{ shop.name }} {{ 'now' | date: "%Y" }}. All rights reserved. Site by <a href="http://un.titled.co.uk">Un.titled</a>, powered by <a href="http://www.shopify.com/website">Shopify</a>.</p>
             </div>
         </footer>
 

@@ -27,7 +27,7 @@
 	.paragraph--lede,
 	.article__content p:first-child {
 		@media all and (min-width: $palm-start) {
-			font-size: $size-largest;
+			font-size: $size-larger;
 			line-height: $line-height-looser;
 		}
 	}

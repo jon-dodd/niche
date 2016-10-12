@@ -7,8 +7,8 @@
     //
 
     // Stacks
-    $font-primary: 'Noto Sans', sans-serif;
-    $font-special: 'Abril Fatface', cursive;
+    $font-primary: 'Lato', sans-serif;
+    $font-special: 'Shadows Into Light', cursive;
     $font-standout: 'Gloria Hallelujah', cursive;
 
     // Weights
@@ -20,9 +20,9 @@
     // Base
     $size-base: 17px;
     $size-larger: 20px;
-    $size-largest: 22px;
-    $size-smaller: 15px;
-    $line-height-looser: 1.8em;
+    $size-largest: 25px;
+    $size-smaller: 14px;
+    $line-height-looser: 1.7em;
     $line-height-base: 1.5em;
     $line-height-tighter: 1.1em;
 
@@ -53,10 +53,7 @@
     // Sets the global style for the site.
     body {
     	font-family: $font-primary;
-    	font-size: $size-smaller;
+        font-size: $size-base;
     	line-height: $line-height-base;
-
-        @media all and (min-width: $lap-start) {
-            font-size: $size-base;
-        }
+        font-weight: 300;
     }

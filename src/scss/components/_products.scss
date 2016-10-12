@@ -55,6 +55,7 @@
         .product__title {
             margin-bottom: $spacing/4;
             @include prefix(transition, color $animation-time $easing);
+            font-size: $size-larger;
 
             .product:hover & {
                 color: $colour-pink;

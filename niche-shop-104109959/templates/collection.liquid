@@ -3,61 +3,61 @@
 {% assign total_products = products_per_row | times: rows %}
 
 {% paginate collection.products by total_products %}
-
-{% include 'breadcrumb' %}
-
-
-<div class="boxed margin--bottom">
-    <div class="margin--bottom">
-        {% if collection.image %}
-            <div class="page-title-hero" style="background-image: url('{{ collection | img_url: 'master' }}')">
-                <!-- <img src="{{ collection | img_url: 'master' }}"  alt="{{ collection.title | escape }}"> -->
-                <div class="page-title-hero__copy">
+{% if collection.image %}
+    <div class="page-title-hero" style="background-image: url('{{ collection | img_url: 'master' }}')">
+        <!-- <img src="{{ collection | img_url: 'master' }}"  alt="{{ collection.title | escape }}"> -->
+        <div class="page-title-hero__copy">
+            <h1 class="page-title"><span>{{ collection.title }}</span></h1>
+            {% if collection.description != blank %}
+              <div class="collection-desc align--centre">
+                {{ collection.description }}
+              </div>
+            {% endif %}
+        </div>
+    </div>
+{% endif %}
+<div class="container">
+    <div class="boxed margin--top margin--bottom">
+            {% if collection.image == blank %}
+                <div class="margin--bottom">
                     <h1 class="page-title"><span>{{ collection.title }}</span></h1>
                     {% if collection.description != blank %}
-                      <div class="collection-desc align--centre">
+                      <div class="collection-desc margin--bottom align--centre">
                         {{ collection.description }}
                       </div>
                     {% endif %}
                 </div>
-            </div>
-        {% else %}
-            <h1 class="page-title"><span>{{ collection.title }}</span></h1>
-            {% if collection.description != blank %}
-              <div class="collection-desc margin--bottom align--centre">
-                {{ collection.description }}
-              </div>
             {% endif %}
-        {% endif %}
+
+    {% case products_per_row %}
+      {% when '2' %}
+        {% assign grid_item_width = 'small--one-half medium--one-half large--one-half' %}
+      {% when '3' %}
+        {% assign grid_item_width = 'small--one-half medium--one-third large--one-third' %}
+      {% when '4' %}
+        {% assign grid_item_width = 'small--one-half medium--one-half large--one-quarter' %}
+      {% when '5' %}
+        {% assign grid_item_width = 'small--one-half medium--one-half large--one-fifth' %}
+    {% endcase %}
+
+    <div class="row">
+
+      {% for product in collection.products %}
+
+        {% include 'product-grid-item' %}
+
+      {% endfor %}
+
     </div>
 
-{% case products_per_row %}
-  {% when '2' %}
-    {% assign grid_item_width = 'small--one-half medium--one-half large--one-half' %}
-  {% when '3' %}
-    {% assign grid_item_width = 'small--one-half medium--one-third large--one-third' %}
-  {% when '4' %}
-    {% assign grid_item_width = 'small--one-half medium--one-half large--one-quarter' %}
-  {% when '5' %}
-    {% assign grid_item_width = 'small--one-half medium--one-half large--one-fifth' %}
-{% endcase %}
+    {% if paginate.pages > 1 %}
 
-<div class="row">
+      <div class="align--centre">
+        {% include 'pagination-custom' %}
+      </div>
+    {% endif %}
 
-  {% for product in collection.products %}
+    {% endpaginate %}
+    </div>
 
-    {% include 'product-grid-item' %}
-
-  {% endfor %}
-
-</div>
-
-{% if paginate.pages > 1 %}
-
-  <div class="align--centre">
-    {% include 'pagination-custom' %}
-  </div>
-{% endif %}
-
-{% endpaginate %}
 </div>

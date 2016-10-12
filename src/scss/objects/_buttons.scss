@@ -11,13 +11,13 @@
 	button,
 	input[type="button"],
 	input[type="submit"] {
-		padding: $spacing/1.5;
+		padding: $spacing/2 $spacing;
 		display: inline-block;
 		text-decoration: none;
 		background: $colour-primary;
 		color: $colour-white;
 		transition: background $animation-time $easing;
-		border-radius: 4px;
+		border-radius: 3px;
 
 		&:hover,
 		&:focus {

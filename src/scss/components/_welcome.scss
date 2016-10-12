@@ -5,7 +5,7 @@
 .owl-carousel {
 	width: auto;
 	cursor: hand;
-	background: $colour-black;
+	background: $colour-cream;
 }
 
 	.owl-dots {
@@ -50,6 +50,17 @@
 
 }
 
+	.welcome__slide {
+		height: 300px;
+		display: block;
+		background-size: cover;
+		background-position: center center;
+
+		@media all and (min-width: $lap-start) {
+			height: 400px;
+		}
+	}
+
 	.welcome__title {
 		width: 100%;
 		display: inline-block;
@@ -62,10 +73,15 @@
 		z-index: $zindex-high;
 		font-family: $font-special;
 		@include prefix(transition, opacity $animation-time $easing);
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 0;
 
 		@media all and (min-width: $lap-start) {
-			position: absolute;
+
 			bottom: $spacing;
+			right: auto;
 			max-width: 65%;
 			opacity: .9;
 			font-size: $size-h1;

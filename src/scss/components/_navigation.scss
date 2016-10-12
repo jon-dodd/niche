@@ -12,7 +12,8 @@ $nav-colour: $colour-teal;
 	padding: $spacing/3 0;
 	position: relative;
 
-	a {
+	a,
+	span {
 		color: $colour-white;
 		text-decoration: none;
 		@include prefix(transition, background $animation-time $easing);
@@ -56,11 +57,12 @@ $nav-colour: $colour-teal;
 			}
 		}
 
-		>a {
+		>a,
+		>span {
 			display: block;
 			padding: $spacing/2;
 			font-family: $font-special;
-			font-size: $size-base;
+			font-size: $size-larger;
 
 			&:hover {
 				background: darken($nav-colour,3%);
@@ -81,7 +83,6 @@ $nav-colour: $colour-teal;
 			z-index: $zindex-super;
 			background: darken($nav-colour,3%);
 			text-align: left;
-			font-size: $size-smaller;
 			@include prefix(transform, translateY(-10px));
 
 
@@ -202,8 +203,7 @@ $nav-colour: $colour-teal;
 
 	@media all and (min-width: $palm-start) {
 		display: block;
-		padding: $spacing 0;
-		font-size: $size-smaller;
+		padding:  0 0 $spacing 0;
 		color: ligthen($colour-black,5%);
 
 		a {

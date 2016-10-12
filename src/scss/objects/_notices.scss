@@ -4,14 +4,39 @@
 
 	.notice {
 		padding: $spacing;
-		background: $colour-alert; 
-		font-size: $size-larger; 
+		background: $colour-alert;
+		font-size: $size-larger;
 	}
 
 	.notice--error {
-		background: $colour-failure; 
+		background: $colour-failure;
+		color: $colour-white;
 	}
 
 	.notice--success {
-		background: $colour-success; 
+		background: $colour-success;
+		color: $colour-white;
+	}
+
+	.badge {
+		background: $colour-alert;
+		font-size: $size-smaller;
+		padding: 5px 10px;
+		display: inline-block; 
+
+		.product & {
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+
+		&--sold-out {
+			background: $colour-failure;
+			color: $colour-white;
+		}
+
+		&--sale {
+			background: $colour-success;
+			color: $colour-white;
+		}
 	}

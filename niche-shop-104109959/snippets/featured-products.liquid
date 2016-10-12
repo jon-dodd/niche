@@ -2,20 +2,21 @@
 {% assign products_per_row = settings.home_featured_products_num %}
 {% assign rows = settings.home_featured_products_row_num %}
 {% assign total_products = products_per_row | times: rows %}
+<div class="container">
+    <div class="boxed margin--bottom">
+        <div class="products">
+            <div class="container container--padding flush--left flush--right">
+                {% if settings.home_featured_products_show_heading %}
+                    <h3 class="h2 align--centre products__title heading--special">
+                        Featured products
+                    </h3>
+                {% endif %}
 
-<div class="boxed margin--bottom">
-    <div class="products">
-        <div class="container container--padding flush--left flush--right">
-            {% if settings.home_featured_products_show_heading %}
-                <h3 class="h2 align--centre products__title heading--special">
-                    Featured products
-                </h3>
-            {% endif %}
-
-            <div class="row">
-                {% for product in collections[featured].products limit: 12 %}
-                    {% include 'product-grid-item' %}
-                {% endfor %}
+                <div class="row">
+                    {% for product in collections[featured].products limit: 12 %}
+                        {% include 'product-grid-item' %}
+                    {% endfor %}
+                </div>
             </div>
         </div>
     </div>
