@@ -3533,9 +3533,6 @@ body {
   color: #272727;
   margin-bottom: 30px;
   text-align: center;
-}
-
-.product__thumb {
   border-top: 3px solid transparent;
   -webkit-transition: all 0.2s ease-in-out;
   -ms-transition: all 0.2s ease-in-out;
@@ -3543,8 +3540,14 @@ body {
   -o-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
 }
-.product:hover .product__thumb {
+.product:hover {
   border-top-color: #cb9eb5;
+}
+
+.product__thumb {
+  max-height: 200px;
+  margfin: 0 auto;
+  display: block;
 }
 
 .product__title {

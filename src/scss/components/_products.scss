@@ -41,15 +41,18 @@
         color: $colour-black;
         margin-bottom: $spacing;
         text-align: center;
+        border-top: 3px solid transparent;
+        @include prefix(transition, all $animation-time $easing);
+
+        &:hover {
+            border-top-color: $colour-pink;
+        }
     }
 
         .product__thumb {
-			border-top: 3px solid transparent;
-            @include prefix(transition, all $animation-time $easing);
-
-            .product:hover & {
-				border-top-color: $colour-pink;
-            }
+            max-height: 200px;
+            margfin: 0 auto;
+            display: block; 
         }
 
         .product__title {
