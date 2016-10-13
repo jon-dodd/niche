@@ -3546,7 +3546,7 @@ body {
 
 .product__thumb {
   max-height: 200px;
-  margfin: 0 auto;
+  margin: 5px auto;
   display: block;
 }
 

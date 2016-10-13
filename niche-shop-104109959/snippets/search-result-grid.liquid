@@ -14,35 +14,29 @@
   Set the default grid_item_width if no variable is set
 {% endcomment %}
 {% unless grid_item_width %}
-  {% assign grid_item_width = 'large--one-third medium--one-half' %}
+    {% assign grid_item_width = 'large--one-third medium--one-half' %}
 {% endunless %}
 
 <div class="grid__item search-result {{ grid_item_width }} text-center">
-
-  {% if item.featured_image %}
-
-    <a href="{{ item.url | within: collection }}" title="{{ item.title | escape }}">
-      {{ item.featured_image.src | img_url: 'medium' | img_tag: item.featured_image.alt }}
-    </a>
-
-  {% endif %}
-
+    {% if item.featured_image %}
+        <a href="{{ item.url | within: collection }}" title="{{ item.title | escape }}">
+            {{ item.featured_image.src | img_url: 'medium' | img_tag: item.featured_image.alt }}
+        </a>
+    {% endif %}
     <h5>{{ item.title | link_to: item.url }}</h5>
-
     <h6>
-      {% if item.compare_at_price > item.price %}
-        <span class="on-sale" itemprop="price">
-          {{ item.price | money }}
-        </span>
-        <small>
-          {{ 'products.product.compare_at' | t }}
-          {{ item.compare_at_price_max | money }}
-        </small>
-      {% else %}
-        <span itemprop="price">
-          {{ item.price | money }}
-        </span>
-      {% endif %}
+        {% if item.compare_at_price > item.price %}
+            <span class="on-sale" itemprop="price">
+                {{ item.price | money }}
+            </span>
+            <small>
+                {{ 'products.product.compare_at' | t }}
+                {{ item.compare_at_price_max | money }}
+            </small>
+        {% else %}
+            <span itemprop="price">
+                {{ item.price | money }}
+            </span>
+        {% endif %}
     </h6>
-
 </div>

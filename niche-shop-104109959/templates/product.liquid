@@ -1,173 +1,152 @@
 <div class="container">
-
-
     <div itemscope itemtype="http://schema.org/Product">
-
-      <meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
-      <meta itemprop="image" content="{{ product.featured_image.src | img_url: 'grande' }}">
-
-
-
-      <div class="product-single margin--top margin--bottom boxed">
-          {% include 'breadcrumb' %}
-        <div class="row">
-          <div class="col-md-5 col-sm-5 col-xs-12 margin--bottom-lap">
-
-
-            <div class="product-main__image margin--bottom">
-                {% for image in product.images %}
-                    <img id="{{ image.id }}" src="{{ image.src | img_url: 'grande' }}" alt="{{ image.alt | escape }}">
-                  {% endfor %}
-              </div>
-
-              {% if product.images.size > 1 %}
-
-                <div class="row" id="ProductThumbs">
-                  {% for image in product.images %}
-                    <div class="col-md-4 col-sm-4 col-xs-4">
-                      <a data-toggle="{{ image.id }}" href="{{ image.src | img_url: '1024x1024' }}" class="toggle-element">
-                        <img src="{{ image.src | img_url: 'grande' }}" alt="{{ image.alt | escape }}">
-                      </a>
-                  </div>
-                  {% endfor %}
-              </div>
-
-              {% endif %}
-
-
-          </div>
-          <div class="col-md-7 col-sm-7 col-xs-12">
-
-            {% comment %}
-              <h3 itemprop="brand">{{ product.vendor }}</h3>
-            {% endcomment %}
-            <h1 class="product-single__title page-title heading--special"><span>{{ product.title }}</span></h1>
-
-            <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-              {% assign variant = product.selected_or_first_available_variant %}
-
-              <meta itemprop="priceCurrency" content="{{ shop.currency }}">
-              <link itemprop="availability" href="http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}">
-              {% unless product.available %}
-                <span class="badge badge--sold-out">
-                  <span class="badge__text{% if sold_out_text.size > 9 %} badge__text--small{% endif %}">{{ 'products.product.sold_out' | t }}</span>
-                </span>
-              {% else %}
-                  <div class="product-single__prices">
-                    <span id="ProductPrice" class="h3 product-single__price" itemprop="price">
-                          {% if product.price_varies %}From {% endif %}{{ product.price | money }}
-                    </span>
-
-                    {% if product.compare_at_price > product.price %}
-                      <s id="ComparePrice" class="product-single__sale-price">
-                        {{ product.compare_at_price_max | money }}
-                      </s>
-                    {% endif %}
-                  </div>
-
-                  <form class="form margin--bottom" action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm">
-                      {% if product.variants.size > 1 %}
-                          <div class="row">
-                              {% if product.options[0] %}
-                                  <div class="col-md-6 col-sm-6 col-xs-12">
-                                      {% assign used = '' %}
-                                      <p><label for="select-one">{{ product.options[0] }}</label>
-                                      <select id='select-one' onchange="letsDoThis()"  class="product-single__variants">
-                                          {% for variant in product.variants %}
-                                              {% unless used contains variant.option1 %}
-                                                  <option value="{{ variant.option1 }}">{{ variant.option1 }} ({{ variant.price | money }})</option>
-                                                  {% capture used %}{{ used }} {{ variant.option1 }}{% endcapture %}
-                                              {% endunless %}
-                                          {% endfor %}
-                                      </select></p>
-                                  </div>
-                              {% endif %}
-                              {% if product.options[1] %}
-                                  <div class="col-md-6 col-sm-6 col-xs-12">
-                                      {% assign used = '' %}
-                                      <p><label for="select-one">{{ product.options[1] }}</label>
-                                      <select id='select-two' onchange="letsDoThis()"  class="product-single__variants">
-                                          {% for variant in product.variants %}
-                                              {% unless used contains variant.option2 %}
-                                                  <option value="{{ variant.option2 }}">{{ variant.option2 }} ({{ variant.price | money }})</option>
-                                                  {% capture used %}{{ used }} {{ variant.option2 }}{% endcapture %}
-                                              {% endunless %}
-                                          {% endfor %}
-                                      </select></p>
-                                  </div>
-                              {% endif %}
-                              {% if product.options[2] %}
-                                  <div class="col-md-6 col-sm-6 col-xs-12">
-                                      {% assign used = '' %}
-                                      <p><label for="select-one">{{ product.options[2] }}</label>
-                                      <select id='select-three' onchange="letsDoThis()"  class="product-single__variants">
-                                          {% for variant in product.variants %}
-                                              {% unless used contains variant.option3 %}
-                                                  <option value="{{ variant.option3 }}">{{ variant.option3 }} ({{ variant.price | money }})</option>
-                                                  {% capture used %}{{ used }} {{ variant.option3 }}{% endcapture %}
-                                              {% endunless %}
-                                          {% endfor %}
-                                      </select></p>
-                                  </div>
-                              {% endif %}
-                          </div>
-                      {% endif %}
-                      <input type="hidden"name="id" id="product-select" value="{{ product.variants.first.id }}" />
-                      <script>
-                          function letsDoThis() {
-                              {% if product.options[0] %}var opt1 = document.getElementById('select-one').value;{% endif %}
-                              {% if product.options[1] %}var opt2 = document.getElementById('select-two').value;{% endif %}
-                              {% if product.options[2] %}var opt3 = document.getElementById('select-three').value;{% endif %}
-                              var id = '';
-                              {% for v in product.variants %}
-                              if(opt1=="{{ v.option1 }}"{% if product.options[1] %} && opt2=="{{ v.option2 }}"{% endif %}{% if product.options[2] %} && opt3=="{{ v.option3 }}"{% endif %}) {
-                                      var id = {{ v.id }};
-                                      var price = "{{ v.price | money }}";
-                                  }
-                              {% endfor %}
-                              if(id!='') {
-                                  document.getElementById('product-select').value = id;
-                                  document.getElementById('ProductPrice').innerHTML = price;
-                              } else {
-                                  document.getElementById('product-select').value = '';
-                                  document.getElementById('ProductPrice').innerHTML = 'From {{ product.price | money }}';
-                              }
-
-                          }
-                      </script>
-
-                    <div class="product-single__quantity{% unless settings.product_quantity_enable %} is-hidden{% endunless %}">
-                      <label for="Quantity">{{ 'products.product.quantity' | t }}</label>
-                      <input type="number" id="Quantity" name="quantity" value="1" min="1" class="quantity-selector">
+        <meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
+        <meta itemprop="image" content="{{ product.featured_image.src | img_url: 'grande' }}">
+        <div class="product-single margin--top margin--bottom boxed">
+            {% include 'breadcrumb' %}
+            <div class="row">
+                <div class="col-md-5 col-sm-5 col-xs-12 margin--bottom-lap">
+                    <div class="product-main__image margin--bottom">
+                        {% for image in product.images %}
+                            <img id="{{ image.id }}" src="{{ image.src | img_url: 'grande' }}" alt="{{ image.alt | escape }}">
+                        {% endfor %}
                     </div>
+                    {% if product.images.size > 1 %}
+                        <div class="row" id="ProductThumbs">
+                            {% for image in product.images %}
+                                <div class="col-md-4 col-sm-4 col-xs-4">
+                                    <a data-toggle="{{ image.id }}" href="{{ image.src | img_url: '1024x1024' }}" class="toggle-element">
+                                        <img src="{{ image.src | img_url: 'grande' }}" alt="{{ image.alt | escape }}">
+                                    </a>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="col-md-7 col-sm-7 col-xs-12">
+                    <h1 class="product-single__title page-title heading--special"><span>{{ product.title }}</span></h1>
+                    <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                        {% assign variant = product.selected_or_first_available_variant %}
+                        <meta itemprop="priceCurrency" content="{{ shop.currency }}">
+                        <link itemprop="availability" href="http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}">
+                        {% unless product.available %}
+                            <span class="badge badge--sold-out">
+                                <span class="badge__text{% if sold_out_text.size > 9 %} badge__text--small{% endif %}">{{ 'products.product.sold_out' | t }}</span>
+                            </span>
+                        {% else %}
+                            <div class="product-single__prices">
+                                <span id="ProductPrice" class="h3 product-single__price" itemprop="price">
+                                    {% if product.price_varies %}From {% endif %}{{ product.price | money }}
+                                </span>
+                                {% if product.compare_at_price > product.price %}
+                                    <s id="ComparePrice" class="product-single__sale-price">
+                                        {{ product.compare_at_price_max | money }}
+                                    </s>
+                                {% endif %}
+                            </div>
+                            <form class="form margin--bottom" action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm">
+                                {% if product.variants.size > 1 %}
+                                    <div class="row">
+                                        {% if product.options[0] %}
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                {% assign used = '' %}
+                                                <p>
+                                                    <label for="select-one">{{ product.options[0] }}</label>
+                                                    <select id='select-one' onchange="letsDoThis()"  class="product-single__variants">
+                                                      {% for variant in product.variants %}
+                                                          {% unless used contains variant.option1 %}
+                                                              <option value="{{ variant.option1 }}">{{ variant.option1 }} ({{ variant.price | money }})</option>
+                                                              {% capture used %}{{ used }} {{ variant.option1 }}{% endcapture %}
+                                                          {% endunless %}
+                                                      {% endfor %}
+                                                    </select>
+                                                </p>
+                                            </div>
+                                        {% endif %}
+                                        {% if product.options[1] %}
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                {% assign used = '' %}
+                                                <p>
+                                                    <label for="select-one">{{ product.options[1] }}</label>
+                                                    <select id='select-two' onchange="letsDoThis()"  class="product-single__variants">
+                                                        {% for variant in product.variants %}
+                                                            {% unless used contains variant.option2 %}
+                                                                <option value="{{ variant.option2 }}">{{ variant.option2 }} ({{ variant.price | money }})</option>
+                                                                {% capture used %}{{ used }} {{ variant.option2 }}{% endcapture %}
+                                                            {% endunless %}
+                                                        {% endfor %}
+                                                    </select>
+                                                </p>
+                                            </div>
+                                        {% endif %}
+                                        {% if product.options[2] %}
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                {% assign used = '' %}
+                                                <p>
+                                                    <label for="select-one">{{ product.options[2] }}</label>
+                                                    <select id='select-three' onchange="letsDoThis()"  class="product-single__variants">
+                                                        {% for variant in product.variants %}
+                                                            {% unless used contains variant.option3 %}
+                                                                <option value="{{ variant.option3 }}">{{ variant.option3 }} ({{ variant.price | money }})</option>
+                                                                {% capture used %}{{ used }} {{ variant.option3 }}{% endcapture %}
+                                                            {% endunless %}
+                                                        {% endfor %}
+                                                    </select>
+                                                </p>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                {% endif %}
+                                <input type="hidden"name="id" id="product-select" value="{{ product.variants.first.id }}" />
+                                  <script>
+                                      function letsDoThis() {
+                                          {% if product.options[0] %}var opt1 = document.getElementById('select-one').value;{% endif %}
+                                          {% if product.options[1] %}var opt2 = document.getElementById('select-two').value;{% endif %}
+                                          {% if product.options[2] %}var opt3 = document.getElementById('select-three').value;{% endif %}
+                                          var id = '';
+                                          {% for v in product.variants %}
+                                          if(opt1=="{{ v.option1 }}"{% if product.options[1] %} && opt2=="{{ v.option2 }}"{% endif %}{% if product.options[2] %} && opt3=="{{ v.option3 }}"{% endif %}) {
+                                                  var id = {{ v.id }};
+                                                  var price = "{{ v.price | money }}";
+                                              }
+                                          {% endfor %}
+                                          if(id!='') {
+                                              document.getElementById('product-select').value = id;
+                                              document.getElementById('ProductPrice').innerHTML = price;
+                                          } else {
+                                              document.getElementById('product-select').value = '';
+                                              document.getElementById('ProductPrice').innerHTML = 'From {{ product.price | money }}';
+                                          }
 
-                    <button type="submit" name="add" id="AddToCart" class="button button--special">
-                      <span id="AddToCartText">{{ 'products.product.add_to_cart' | t }}</span>
-                    </button>
-                  </form>
-              {% endunless %}
+                                      }
+                                  </script>
 
-              <div class="product-single__desc margin--bottom" itemprop="description">
-                {{ product.description }}
-              </div>
+                                <div class="product-single__quantity{% unless settings.product_quantity_enable %} is-hidden{% endunless %}">
+                                    <label for="Quantity">{{ 'products.product.quantity' | t }}</label>
+                                    <input type="number" id="Quantity" name="quantity" value="1" min="1" class="quantity-selector">
+                                </div>
 
+                                <button type="submit" name="add" id="AddToCart" class="button button--special">
+                                    <span id="AddToCartText">{{ 'products.product.add_to_cart' | t }}</span>
+                                </button>
+                            </form>
+                        {% endunless %}
 
+                        <div class="product-single__desc margin--bottom" itemprop="description">
+                            {{ product.description }}
+                        </div>
 
-              {% if settings.social_sharing_products %}
-                {% include 'social-sharing' %}
-              {% endif %}
+                        {% if settings.social_sharing_products %}
+                            {% include 'social-sharing' %}
+                        {% endif %}
+                    </div>
+                </div>
             </div>
 
-
-          </div>
+            {% if settings.product_related_enable %}
+                {% include 'related-products' %}
+            {% endif %}
         </div>
-
-
-      {% if settings.product_related_enable %}
-        {% include 'related-products' %}
-      {% endif %}
-
-    </div>
     </div>
 
     {{ 'option_selection.js' | shopify_asset_url | script_tag }}

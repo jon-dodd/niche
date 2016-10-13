@@ -14,38 +14,38 @@
             Menu
         </a>
         <ul class="list--unstyled list--inline align--centre nav__items">
-          {% for link in linklists.main-menu.links %}
-            {% comment %}
-              Create a dropdown menu by naming a linklist the same as a link in the parent nav
+            {% for link in linklists.main-menu.links %}
+                {% comment %}
+                  Create a dropdown menu by naming a linklist the same as a link in the parent nav
 
-              More info on dropdowns:
-                - http://docs.shopify.com/manual/your-website/navigation/create-drop-down-menu
-            {% endcomment %}
-            {% assign child_list_handle = link.title | handleize %}
-            {% if linklists[child_list_handle].links != blank %}
-              <li class="nav__parent" aria-haspopup="true">
-                <span class="site-nav__link site-nav__link--dropdown">
-                  {{ link.title }}
-              </span>
-                <ul class="nav__dropdown">
-                  {% for childlink in linklists[child_list_handle].links %}
-                    <li class="nav__child">
-                      <a href="{{ childlink.url }}">{{ childlink.title | escape }}</a>
+                  More info on dropdowns:
+                    - http://docs.shopify.com/manual/your-website/navigation/create-drop-down-menu
+                {% endcomment %}
+                {% assign child_list_handle = link.title | handleize %}
+                {% if linklists[child_list_handle].links != blank %}
+                    <li class="nav__parent" aria-haspopup="true">
+                        <span class="site-nav__link site-nav__link--dropdown">
+                            {{ link.title }}
+                        </span>
+                        <ul class="nav__dropdown">
+                            {% for childlink in linklists[child_list_handle].links %}
+                                <li class="nav__child">
+                                    <a href="{{ childlink.url }}">{{ childlink.title | escape }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
                     </li>
-                  {% endfor %}
-                </ul>
-              </li>
-            {% else %}
-              <li class="nav__parent">
-                <a href="{{ link.url }}">{{ link.title }}</a>
-              </li>
-            {% endif %}
-          {% endfor %}
-          <li class="nav__parent nav__paren--standout">
-              <a href="/cart">
-                  Basket ({{ cart.item_count }})
-              </a>
-          </li>
-      </ul>
-  </div>
+                {% else %}
+                    <li class="nav__parent">
+                        <a href="{{ link.url }}">{{ link.title }}</a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+            <li class="nav__parent nav__paren--standout">
+                <a href="/cart">
+                    Basket ({{ cart.item_count }})
+                </a>
+            </li>
+        </ul>
+    </div>
 </nav>
